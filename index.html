@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Havi Barber</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tela 1 -->
+<section id="tela-1" class="active">
+    <div class="header">
+        <img src="./imagens/logo.png.jpg" alt="Logo Havi Barber">
+        <p>📍 Rua São Domingos Nº 807 - Cidade Nova</p>
+    </div>
+
+    <h2>Selecione um serviço:</h2>
+
+    <div class="service">
+        <div class="icon">
+            <img src="./imagens/corte.png" alt="Corte">
+        </div>
+        <p>CORTE <span>R$ 20,00</span></p>
+        <button data-servico="Corte" data-preco="R$ 20,00" onclick="changeScreen(this)">Agendar</button>
+    </div>
+
+    <div class="service">
+        <div class="icon">
+            <img src="./imagens/navalha.png" alt="Navalhado">
+        </div>
+        <p>NAVALHADO <span>R$ 25,00</span></p>
+        <button data-servico="Navalhado" data-preco="R$ 25,00" onclick="changeScreen(this)">Agendar</button>
+    </div>
+
+    <div class="service">
+        <div class="icon">
+            <img src="./imagens/barba e corte.png" alt="Corte + Barba">
+        </div>
+        <p>CORTE + BARBA <span>R$ 45,00</span></p>
+        <button data-servico="Corte + Barba" data-preco="R$ 45,00" onclick="changeScreen(this)">Agendar</button>
+    </div>
+
+    <div class="service">
+        <div class="icon">
+            <img src="./imagens/pigmentação.png" alt="Pigmentação">
+        </div>
+        <p>PIGMENTAÇÃO <span>R$ 25,00</span></p>
+        <button data-servico="Pigmentação" data-preco="R$ 25,00" onclick="changeScreen(this)">Agendar</button>
+    </div>
+
+    <div class="service">
+        <div class="icon">
+            <img src="./imagens/sombrancelha.png" alt="Sobrancelha">
+        </div>
+        <p>SOBRANCELHA <span>R$ 5,00</span></p>
+        <button data-servico="Sobrancelha" data-preco="R$ 5,00" onclick="changeScreen(this)">Agendar</button>
+    </div>
+</section>
+
+<!-- Tela 2 -->
+<section id="tela-2">
+    <div class="header">
+        <img src="./imagens/logo.png.jpg" alt="Logo Havi Barber">
+        <p>📍 Rua São Domingos Nº 807 - Cidade Nova</p>
+        <button onclick="changeScreen()">Voltar</button>
+    </div>
+
+    <h2>Agende seu horário:</h2>
+
+    <form id="agendamentoForm">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
+        <label for="data">Data</label>
+        <input type="date" id="data" name="data" required>
+
+        <label for="horario">Horário</label>
+        <div class="horarios">
+            <button type="button" onclick="setHorario('09:00')">09:00</button>
+            <button type="button" onclick="setHorario('09:40')">09:40</button>
+            <button type="button" onclick="setHorario('10:20')">10:20</button>
+            <button type="button" onclick="setHorario('11:00')">11:00</button>
+            <button type="button" onclick="setHorario('13:00')">13:00</button>
+            <button type="button" onclick="setHorario('13:40')">13:40</button>
+            <button type="button" onclick="setHorario('14:20')">14:20</button>
+            <button type="button" onclick="setHorario('15:00')">15:00</button>
+            <button type="button" onclick="setHorario('15:40')">15:40</button>
+            <button type="button" onclick="setHorario('16:20')">16:20</button>
+            <button type="button" onclick="setHorario('17:00')">17:00</button>
+            <button type="button" onclick="setHorario('17:40')">17:40</button>
+            <button type="button" onclick="setHorario('18:20')">18:20</button>
+            <button type="button" onclick="setHorario('19:00')">19:00</button>
+        </div>
+
+        <input type="hidden" id="horario" name="horario" required>
+
+        <button type="button" onclick="confirmarAgendamento()">Confirmar Agendamento</button>
+    </form>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
