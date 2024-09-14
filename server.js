@@ -29,7 +29,7 @@ app.use(express.json());
 app.get('/verificar/:data/:horario', (req, res) => {
     const { data, horario } = req.params;
 
-    const sql = `SELECT * FROM agendamentos WHERE data_agendamento = ? AND horario = ?`;
+    const sql = SELECT * FROM agendamentos WHERE data_agendamento = ? AND horario = ?;
     db.query(sql, [data, horario], (err, results) => {
         if (err) {
             console.error('Erro ao verificar disponibilidade', err);
@@ -39,11 +39,10 @@ app.get('/verificar/:data/:horario', (req, res) => {
     });
 });
 
-
 app.post('/reservar', (req, res) => {
     const { nome, telefone, data, horario, servico, preco } = req.body;
 
-    const verificarSql = `SELECT * FROM agendamentos WHERE data_agendamento = ? AND horario = ?`;
+    const verificarSql = SELECT * FROM agendamentos WHERE data_agendamento = ? AND horario = ?;
     db.query(verificarSql, [data, horario], (err, results) => {
         if (err) {
             console.error('Erro ao verificar disponibilidade', err);
@@ -54,8 +53,7 @@ app.post('/reservar', (req, res) => {
             return res.status(400).json({ error: 'Horário já reservado' });
         }
 
-        
-        const insertSql = `INSERT INTO agendamentos (nome, telefone, servico, preco, data_agendamento, horario) VALUES (?, ?, ?, ?, ?, ?)`;
+        const insertSql = INSERT INTO agendamentos (nome, telefone, servico, preco, data_agendamento, horario) VALUES (?, ?, ?, ?, ?, ?);
         db.query(insertSql, [nome, telefone, servico, preco, data, horario], (err) => {
             if (err) {
                 console.error('Erro ao inserir agendamento', err);
@@ -67,5 +65,5 @@ app.post('/reservar', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(Servidor rodando na porta ${PORT});
 });
