@@ -7,6 +7,10 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
+app.use(cors({
+    origin: 'https://karlusx22.github.io/Havibarber/'
+}));
+
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
