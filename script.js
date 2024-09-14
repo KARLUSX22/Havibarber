@@ -76,7 +76,7 @@ document.getElementById('data').addEventListener('change', (event) => {
 });
 
 function verificarDisponibilidade(data, horario) {
-    return fetch(`http://localhost:3000/verificar/${data}/${horario}`)
+    return fetch(`https://sql311.infinityfree.com/verificar/${data}/${horario}`)
         .then(response => response.json())
         .then(data => data.disponivel)
         .catch(error => {
@@ -125,7 +125,7 @@ function confirmarAgendamento() {
                     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
                     window.open(url, '_blank');
 
-                    fetch('sql311.infinityfree.com', {
+                    fetch('https://sql311.infinityfree.com', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
