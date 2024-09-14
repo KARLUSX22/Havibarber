@@ -125,7 +125,7 @@ function confirmarAgendamento() {
                     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
                     window.open(url, '_blank');
 
-                    fetch('https://sql311.infinityfree.com', {
+                    fetch('https://sql311.infinityfree.com/reservar', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
