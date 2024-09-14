@@ -25,13 +25,13 @@ const horariosAgendados = [
 
 function gerarHorariosDisponiveis(dataSelecionada) {
     const horarios = [];
-    
-    let inicioManha = new Date(`${dataSelecionada}T09:00`);
-    let fimManha = new Date(`${dataSelecionada}T12:00`);
-    
-    let inicioTarde = new Date(`${dataSelecionada}T14:00`);
-    let fimTarde = new Date(`${dataSelecionada}T19:30`);
-    
+
+    let inicioManha = new Date(${dataSelecionada}T09:00);
+    let fimManha = new Date(${dataSelecionada}T12:00);
+
+    let inicioTarde = new Date(${dataSelecionada}T14:00);
+    let fimTarde = new Date(${dataSelecionada}T19:30);
+
     let atual = new Date(inicioManha);
     while (atual <= fimManha) {
         horarios.push(new Date(atual));
@@ -54,10 +54,10 @@ function formatarHorario(date) {
 function preencherHorariosDisponiveis(data) {
     const horarios = gerarHorariosDisponiveis(data);
     const botoesHorarios = document.querySelectorAll('.horarios button');
-    
+
     botoesHorarios.forEach((botao) => {
         const horario = botao.textContent;
-        const dataHora = `${data}T${horario}`;
+        const dataHora = ${data}T${horario};
         if (horariosAgendados.includes(dataHora)) {
             botao.disabled = true;
             botao.classList.add('agendado');
