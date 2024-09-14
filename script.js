@@ -76,34 +76,13 @@ document.getElementById('data').addEventListener('change', (event) => {
 });
 
 function verificarDisponibilidade(data, horario) {
-    return fetch(`https://sql311.infinityfree.com/verificar/${data}/${horario}`)
+    return fetch(https://sql311.infinityfree.com/verificar/${data}/${horario})
         .then(response => response.json())
         .then(data => data.disponivel)
         .catch(error => {
-            console.error('Erro ao verificar disponibilidade', error);
+            console.error('Erro ao verificar disponibilidade:', error);
             throw error;
         });
-}
-
-function setHorario(horarioSelecionado) {
-    document.getElementById('horario').value = horarioSelecionado;
-
-    const botoesHorarios = document.querySelectorAll('.horarios button');
-    botoesHorarios.forEach((botao) => {
-        botao.classList.remove('selected');
-    });
-
-    const botaoSelecionado = Array.from(botoesHorarios).find(
-        (botao) => botao.textContent === horarioSelecionado
-    );
-    if (botaoSelecionado) {
-        botaoSelecionado.classList.add('selected');
-    }
-}
-
-function formatarData(data) {
-    const partes = data.split('-');
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
 function confirmarAgendamento() {
@@ -120,9 +99,9 @@ function confirmarAgendamento() {
                 } else {
                     const dataFormatada = formatarData(data);
                     const numeroWhatsApp = '5599991330396';
-                    const mensagem = `Olá, meu nome é ${nome}. Gostaria de agendar um ${servicoSelecionado} (${precoSelecionado}) para o dia ${dataFormatada} às ${horario}. Meu telefone é ${telefone}.`;
+                    const mensagem = Olá, meu nome é ${nome}. Gostaria de agendar um ${servicoSelecionado} (${precoSelecionado}) para o dia ${dataFormatada} às ${horario}. Meu telefone é ${telefone}.;
 
-                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+                    const url = https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)};
                     window.open(url, '_blank');
 
                     fetch('https://sql311.infinityfree.com/reservar', {
@@ -149,13 +128,13 @@ function confirmarAgendamento() {
                         }
                     })
                     .catch(err => {
-                        console.error('Erro ao enviar reserva', err);
+                        console.error('Erro ao enviar reserva:', err);
                         alert('Erro ao enviar reserva.');
                     });
                 }
             })
             .catch((err) => {
-                console.error("Erro ao verificar disponibilidade", err);
+                console.error("Erro ao verificar disponibilidade:", err);
             });
     } else {
         alert('Por favor, preencha todos os campos!');
