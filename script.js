@@ -162,7 +162,6 @@ function confirmarAgendamento() {
     }
 }
 
-
 function atualizarInterfaceHorarios(data) {
     document.getElementById('data').dispatchEvent(new Event('change'));
 }
