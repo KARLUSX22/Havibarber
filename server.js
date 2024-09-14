@@ -11,6 +11,7 @@ app.use(cors({
     origin: 'https://karlusx22.github.io/Havibarber/'
 }));
 
+// Configuração do banco de dados
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -18,14 +19,18 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
+// Verifica conexão com o banco de dados
 db.connect(err => {
-    if (err) throw err;
+    if (err) {
+        console.error('Erro ao conectar ao banco de dados:', err);
+        process.exit(1); // Sai do processo caso haja erro na conexão
+    }
     console.log('Conectado ao banco de dados!');
 });
 
-app.use(cors());
 app.use(express.json());
 
+// Rota para verificar a disponibilidade de horário
 app.get('/verificar/:data/:horario', (req, res) => {
     const { data, horario } = req.params;
 
@@ -35,13 +40,15 @@ app.get('/verificar/:data/:horario', (req, res) => {
             console.error('Erro ao verificar disponibilidade', err);
             return res.status(500).json({ error: 'Erro ao verificar disponibilidade' });
         }
-        res.json({ disponivel: results.length === 0 });
+        res.json({ disponivel: results.length === 0 }); // Retorna 'true' se não houver resultados (disponível)
     });
 });
 
+// Rota para reservar o horário
 app.post('/reservar', (req, res) => {
     const { nome, telefone, data, horario, servico, preco } = req.body;
 
+    // Verificar se o horário já está reservado
     const verificarSql = SELECT * FROM agendamentos WHERE data_agendamento = ? AND horario = ?;
     db.query(verificarSql, [data, horario], (err, results) => {
         if (err) {
@@ -49,10 +56,12 @@ app.post('/reservar', (req, res) => {
             return res.status(500).json({ error: 'Erro ao verificar disponibilidade' });
         }
 
+        // Se o horário já estiver reservado, retornar um erro
         if (results.length > 0) {
             return res.status(400).json({ error: 'Horário já reservado' });
         }
 
+        // Inserir novo agendamento
         const insertSql = INSERT INTO agendamentos (nome, telefone, servico, preco, data_agendamento, horario) VALUES (?, ?, ?, ?, ?, ?);
         db.query(insertSql, [nome, telefone, servico, preco, data, horario], (err) => {
             if (err) {
@@ -64,6 +73,7 @@ app.post('/reservar', (req, res) => {
     });
 });
 
+// Inicia o servidor na porta especificada
 app.listen(PORT, () => {
     console.log(Servidor rodando na porta ${PORT});
 });
